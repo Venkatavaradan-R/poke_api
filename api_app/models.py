@@ -8,7 +8,7 @@ class pokemon(models.Model):
     is_legendary = models.BinaryField(unique = True)
     
     def photo_upload_path(self,filename):
-        path = "api_app/uploads/photos/pokemon/{}".format(filename)
+        path = f"api_app/uploads/photos/pokemon/{filename}"
         return path
     
     picture = models.ImageField(upload_to = photo_upload_path, null = True, blank = True)
