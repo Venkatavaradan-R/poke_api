@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from api_app.api import pokemonList
+from api_app.api import pokemonList, movesList
 
 # from api_app.views import landing
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/pokemon_list$',pokemonList.as_view(),name = 'Pokemon_List'),
+    url(r'^api/moves_list$',movesList.as_view(),name = 'Moves_List')
     # path('',landing)
 ]

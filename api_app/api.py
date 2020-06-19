@@ -8,3 +8,10 @@ class pokemonList(APIView):
         model = pokemon.objects.all()
         serializer = pokemonSerializer(model ,many = True)
         return Response(serializer.data)
+
+
+class movesList(APIView):
+    def get(self,request):
+        model = moves.objects.all()
+        serializer = movesSerializer(model, many = True)
+        return Response(serializer.data)
