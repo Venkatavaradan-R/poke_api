@@ -17,6 +17,20 @@ class pokemonList(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
+class pokemonDetails(APIView):
+    def get(self, request, pk):
+        model = pokemon.objects.get(pokedex_id = pk)
+        serializer = pokemonSerializer(model )
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        serializer = pokemonSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
 class movesList(APIView):
     def get(self,request):
         model = moves.objects.all()
