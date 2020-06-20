@@ -19,12 +19,21 @@ class pokemonList(APIView):
 
 class pokemonDetails(APIView):
     def get(self, request, pk):
-        model = pokemon.objects.get(pokedex_id = pk)
-        serializer = pokemonSerializer(model )
+        try:
+            model = pokemon.objects.get(pokedex_id = pk)
+        except:
+            return Response(f"PK = {pk} not valid", status = status.HTTP_404_NOT_FOUND)
+        serializer = pokemonSerializer(model)
         return Response(serializer.data)
 
+
     def put(self, request, pk):
-        serializer = pokemonSerializer(data = request.data)
+        try:
+            model = pokemon.objects.get(pokedex_id = pk)
+        except:
+            return Response(f"PK = {pk} not valid", status = status.HTTP_404_NOT_FOUND)
+
+        serializer = pokemonSerializer(model, data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
