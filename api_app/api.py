@@ -44,6 +44,13 @@ class pokemonDetails(APIView):
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        model = self.get_pokemon(pk)
+        model.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+
 
 class movesList(APIView):
     def get(self,request):
