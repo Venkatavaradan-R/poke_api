@@ -13,6 +13,8 @@ class movesSerializer(serializers.ModelSerializer):
     power = serializers.IntegerField(required = False)
     contact_format = serializers.CharField(required = False)
     move_type = serializers.CharField(required = False)
+    move_name = serializers.CharField(required = False)
+
 
 
     class Meta:

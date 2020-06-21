@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^api/pokemon_list$',pokemonList.as_view(),name = 'Pokemon_List'),
     url(r'^api/pokemon_list/(?P<pk>\d+)/$',pokemonDetails.as_view(),name = 'Pokemon_Details'),
     url(r'^api/moves_list$',movesList.as_view(),name = 'Moves_List'),
-    url(r'^api/moves_list/(?P<pk>[a-zA-Z ]+)$',movesDetails.as_view(),name = 'Moves_Details')
+    url(r'^api/moves_list/(?P<pk>\d+)$',movesDetails.as_view(),name = 'Moves_Details')
     # path('',landing)
 ]

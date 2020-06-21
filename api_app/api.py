@@ -56,7 +56,7 @@ class movesList(APIView):
 class movesDetails(APIView):
     def get(self,request,pk):
         try:
-            model = moves.objects.get(move_name = pk)
+            model = moves.objects.get(move_id = pk)
         except:
             return Response(f"PK = {pk} not valid", status = status.HTTP_404_NOT_FOUND)
         serializer = movesSerializer(model)
@@ -64,7 +64,7 @@ class movesDetails(APIView):
     
     def put(self,request,pk):
         try:
-            model = moves.objects.get(move_name = pk)
+            model = moves.objects.get(move_id = pk)
         except:
             return Response(f"PK = {pk} not valid", status = status.HTTP_404_NOT_FOUND)
             

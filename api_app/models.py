@@ -16,6 +16,7 @@ class pokemon(models.Model):
         return f"{self.pkmn_name} - {self.pokedex_id}"
 
 class moves(models.Model):
+    move_id = models.IntegerField(default = 0, unique = True)
     move_name = models.CharField(max_length=20, unique = True)
     contact_format = models.CharField(max_length=20)
     power = models.IntegerField()
