@@ -59,20 +59,23 @@ class movesList(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 class movesDetails(APIView):
-    def get(self,request,pk):
+    def get_move(self, pk):
         try:
             model = moves.objects.get(move_id = pk)
+            return model
         except:
+            return
+
+    def get(self,request,pk):
+        if not self.get_move(pk):
             return Response(f"PK = {pk} not valid", status = status.HTTP_404_NOT_FOUND)
+        model = self.get_move(pk)
         serializer = movesSerializer(model)
         return Response(serializer.data)
     
     def put(self,request,pk):
-        try:
-            model = moves.objects.get(move_id = pk)
-        except:
-            return Response(f"PK = {pk} not valid", status = status.HTTP_404_NOT_FOUND)
-            
+
+        model = self.get_move(pk)    
         serializer = movesSerializer(model, data = request.data)
         if serializer.is_valid():
             serializer.save()
